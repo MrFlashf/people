@@ -9,11 +9,11 @@ defmodule Web.Application do
   def start(_type, _args) do
     children = [
       # Start the Telemetry supervisor
-      WebWeb.Telemetry,
+      Web.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: Web.PubSub},
       # Start the Endpoint (http/https)
-      WebWeb.Endpoint
+      Web.Endpoint
       # Start a worker by calling: Web.Worker.start_link(arg)
       # {Web.Worker, arg}
     ]
@@ -28,7 +28,7 @@ defmodule Web.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    WebWeb.Endpoint.config_change(changed, removed)
+    Web.Endpoint.config_change(changed, removed)
     :ok
   end
 end

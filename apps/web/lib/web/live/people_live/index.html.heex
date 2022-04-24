@@ -1,0 +1,44 @@
+<div class="">
+  <%= if @live_action in [:new, :edit] do %>
+    <.modal return_to={Routes.people_index_path(@socket, :index)}>
+      <.live_component
+        module={Web.PeopleLive.FormComponent}
+        id={@person.id || :new}
+        title={@page_title}
+        action={@live_action}
+        person={@person}
+        return_to={Routes.people_index_path(@socket, :index)}
+      />
+    </.modal>
+  <% end %>
+
+
+  <div class="flex">
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" phx-click="generate_people"> Generate people </button>
+    <div class="flex-grow"></div>
+    <%= live_patch  to: Routes.people_index_path(@socket, :new) do %>
+      <div class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-10 rounded mx-4">
+        Add Person
+      </div>
+    <% end %>
+  </div>
+
+  <div id="people" >
+    <form id="filters" class="py-2 my-2 flex space-x-4" phx-submit="apply_filters">
+      <div> 
+        <input type="text" name="name" placeholder="Filter by name...">
+      </div>
+      <div> 
+        <input type="text" name="surname" placeholder="Filter by surname...">
+      </div>
+      <div class="flex-grow"></div>
+      <div>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-4" type="submit"> Apply filters </button>
+      </div>
+
+    </form>
+    <%= for person <- @people  do %>
+      <.live_component module={PersonComponent} id={person.id} person={person} />
+    <% end %>
+  </div>
+</div>

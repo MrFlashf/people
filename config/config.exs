@@ -22,9 +22,9 @@ config :database, :repo, Database.SQL
 config :phoenix, json_library: Jason
 
 # Configures the endpoint
-config :web, WebWeb.Endpoint,
+config :web, Web.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: WebWeb.ErrorView, accepts: ~w(html json), layout: false],
+  render_errors: [view: Web.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Web.PubSub,
   live_view: [signing_salt: "GGTOmni0"]
 
@@ -38,7 +38,9 @@ config :esbuild,
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 
-  config :tailwind, version: "3.0.24", default: [
+config :tailwind,
+  version: "3.0.24",
+  default: [
     args: ~w(
       --config=tailwind.config.js
       --input=css/app.css
@@ -46,7 +48,6 @@ config :esbuild,
     ),
     cd: Path.expand("../apps/web/assets", __DIR__)
   ]
-
 
 # Configures Elixir's Logger
 config :logger, :console,

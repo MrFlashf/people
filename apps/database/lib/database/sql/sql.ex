@@ -25,6 +25,7 @@ defmodule Database.SQL do
     Person
     |> filter_name(filters)
     |> filter_surname(filters)
+    |> order_by([p], desc: p.inserted_at)
     |> Repo.all()
   end
 
@@ -51,16 +52,17 @@ defmodule Database.SQL do
 
   def change_person(person, params), do: Person.changeset(person, params)
 
-
   defp filter_name(query, %{"name" => name}) do
     like_term = "%#{name}%"
     where(query, [p], ilike(p.name, ^like_term))
   end
+
   defp filter_name(query, _), do: query
 
   defp filter_surname(query, %{"surname" => surname}) do
     like_term = "%#{surname}%"
     where(query, [p], ilike(p.surname, ^like_term))
   end
+
   defp filter_surname(query, _), do: query
 end

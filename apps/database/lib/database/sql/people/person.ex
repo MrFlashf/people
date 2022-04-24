@@ -2,10 +2,10 @@ defmodule Database.SQL.Person do
   use Database.SQL.Repo.Schema
 
   schema "people" do
-    field :name, :string
-    field :surname, :string
-    field :sex, Ecto.Enum, values: [:male, :female]
-    field :birthdate, :date
+    field(:name, :string)
+    field(:surname, :string)
+    field(:sex, Ecto.Enum, values: [:male, :female])
+    field(:birthdate, :date)
 
     timestamps()
   end

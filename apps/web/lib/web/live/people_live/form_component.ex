@@ -1,5 +1,5 @@
-defmodule WebWeb.PeopleLive.FormComponent do
-  use WebWeb, :live_component
+defmodule Web.PeopleLive.FormComponent do
+  use Web, :live_component
 
   def update(%{person: person} = assigns, socket) do
     changeset = People.change_person(person)
@@ -41,7 +41,7 @@ defmodule WebWeb.PeopleLive.FormComponent do
   defp save_person(socket, :new, person_params) do
     person_params = handle_date(person_params)
 
-    case People.create_person(person_params) |> IO.inspect() do
+    case People.create_person(person_params) do
       {:ok, _person} ->
         {:noreply,
          socket
@@ -53,33 +53,7 @@ defmodule WebWeb.PeopleLive.FormComponent do
     end
   end
 
-  defp handle_date(
-         %{"birthdate" => birthdate} = person_params
-       ) do
+  defp handle_date(%{"birthdate" => birthdate} = person_params) do
     %{person_params | "birthdate" => Date.from_iso8601!(birthdate)}
   end
-
-  # def update_changeset(%{assigns: %{changeset: changeset}} = socket, key, value) do
-  #   socket
-  #   |> assign(:changeset, Ecto.Changeset.put_change(changeset, key, value))
-  # end
 end
-
-
-
-# <%= label f, :birthdate %>
-# <%= date_select f, :birthdate, year: [options: 1923..2004], month: [options: [
-#       {"January", "01"},
-#       {"February", "02"},
-#       {"March", "03"},
-#       {"April", "04"},
-#       {"May", "05"},
-#       {"June", "06"},
-#       {"July", "07"},
-#       {"August", "08"},
-#       {"September", "09"},
-#       {"October", "10"},
-#       {"November", "11"},
-#       {"December", "12"},
-#   ]] %>
-# <%= error_tag f, :birthdate %>

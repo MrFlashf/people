@@ -1,4 +1,4 @@
-defmodule WebWeb.LiveHelpers do
+defmodule Web.LiveHelpers do
   import Phoenix.LiveView
   import Phoenix.LiveView.Helpers
 

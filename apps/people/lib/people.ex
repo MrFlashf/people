@@ -1,9 +1,6 @@
 defmodule People do
-  alias Database.SQL.Person
-
   @database Database.load()
   @names_db NamesDB.load()
-  @year_in_milliseconds :timer.hours(365 * 24)
 
   @doc """
   Generates a list of people and saves it to the Database.

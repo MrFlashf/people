@@ -49,10 +49,11 @@ defmodule DatabaseStub do
 
   def remove_person(_person_id), do: {:ok, %Person{}}
 
-  def create_person(), do: {:ok, %Person{}}
+  def create_person(_params), do: {:ok, %Person{}}
 
   def update_person(_person_id, _params), do: {:ok, %Person{}}
 
   def get_person!(_person_id), do: %Person{}
-  def change_person!(person, params), do: Person.changeset(person, params)
+
+  def change_person(person, params), do: Person.changeset(person, params)
 end

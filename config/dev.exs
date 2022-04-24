@@ -1,6 +1,6 @@
 import Config
 
-config :web, WebWeb.Endpoint,
+config :web, Web.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
@@ -13,12 +13,12 @@ config :web, WebWeb.Endpoint,
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
   ]
 
-config :web, WebWeb.Endpoint,
+config :web, Web.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"lib/web_web/(live|views)/.*(ex)$",
-      ~r"lib/web_web/templates/.*(eex)$"
+      ~r"lib/web/(live|views)/.*(ex)$",
+      ~r"lib/web/templates/.*(eex)$"
     ]
   ]
 

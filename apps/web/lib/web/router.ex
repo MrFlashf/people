@@ -1,11 +1,11 @@
-defmodule WebWeb.Router do
-  use WebWeb, :router
+defmodule Web.Router do
+  use Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {WebWeb.LayoutView, :root}
+    plug :put_root_layout, {Web.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -14,10 +14,10 @@ defmodule WebWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", WebWeb do
+  scope "/", Web do
     pipe_through :browser
 
-    get "/", PageController, :index
+    # get "/", PageController, :index
 
     live "/people", PeopleLive.Index, :index
     live "/people/new", PeopleLive.Index, :new
@@ -26,7 +26,7 @@ defmodule WebWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", WebWeb do
+  # scope "/api", Web do
   #   pipe_through :api
   # end
 
@@ -43,7 +43,7 @@ defmodule WebWeb.Router do
     scope "/" do
       pipe_through :browser
 
-      live_dashboard "/dashboard", metrics: WebWeb.Telemetry
+      live_dashboard "/dashboard", metrics: Web.Telemetry
     end
   end
 end

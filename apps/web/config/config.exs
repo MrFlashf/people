@@ -8,9 +8,9 @@
 import Config
 
 # Configures the endpoint
-config :web, WebWeb.Endpoint,
+config :web, Web.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: WebWeb.ErrorView, accepts: ~w(html json), layout: false],
+  render_errors: [view: Web.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Web.PubSub,
   live_view: [signing_salt: "GGTOmni0"]
 

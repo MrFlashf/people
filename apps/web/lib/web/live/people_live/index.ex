@@ -1,7 +1,7 @@
-defmodule WebWeb.PeopleLive.Index do
-  use WebWeb, :live_view
+defmodule Web.PeopleLive.Index do
+  use Web, :live_view
 
-  alias WebWeb.People.PersonComponent
+  alias Web.People.PersonComponent
   alias Database.SQL.Person
 
   def mount(_params, _, socket) do
@@ -34,8 +34,6 @@ defmodule WebWeb.PeopleLive.Index do
         filters,
         socket
       ) do
-    IO.inspect(filters)
-
     {:noreply,
      socket
      |> assign(:people, People.fetch_people(filters))}
@@ -46,8 +44,6 @@ defmodule WebWeb.PeopleLive.Index do
         filters,
         socket
       ) do
-    IO.inspect(filters)
-
     {:noreply,
      socket
      |> assign(:people, People.fetch_people(filters))}
@@ -61,7 +57,7 @@ defmodule WebWeb.PeopleLive.Index do
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Product")
+    |> assign(:page_title, "New Person")
     |> assign(:person, %Person{})
   end
 
