@@ -1,0 +1,27 @@
+
+<div class="my-4">
+<div class="flex bg-gray-300 rounded p-4">
+  <%# <.live_component module={ModalComponent} id={"modal-#{@person.id}"} person={@person} /> %>
+
+  <div class="grid grid-cols-4 gap-x-4 items-stretch m-auto">
+    <div><%= @person.name %></div>
+    <%# <div class="flex-grow"></div> %>
+    <div><%= @person.surname %></div>
+    <div class="w-full"><%= @person.birthdate %></div>
+    <div class=""><%= @person.sex %></div>
+  </div>
+
+<div class="flex-grow"></div>
+
+  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-4"
+  phx-click="toggle_details" phx-target={@myself}> View </button>
+  <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mx-4"> 
+    <%= live_patch "Edit", to: Routes.people_index_path(@socket, :edit, @person) %>
+  </button>
+  <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mx-4"> 
+    <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: @person.id, data: [confirm: "Are you sure?"]%>
+  </button>
+</div>
+
+
+</div>
